@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head>
+    <title>Microservice Cart</title>
+    <link th:rel = "stylesheet" th:href = "@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class = "container">
+    <h1>Microservice Cart eCommerce</h1>
+    <a th:href = "@{|/|}"><button type="button" class="btn btn-info mb-2">Retour à l'accueil</button></a>
+
+    <div class="row">
+        <div th:each = "product : ${cart}" class = "col-md-4 my-1">
+            <img th:src = "${product.getIllustration()}" class = "card-img-top"/>
+            <p th:text = "${product.getName()}"></p>
+            <p>Prix (en €) : <p th:text="${product.getPrice()}"></p></p>
+        </div>
+    </div>
+    <h2 class="row">Prix total du panier : <p th:text="${prixTotal}"></p> €</h2>
+    <a th:href = "@{|/commande-passer|}"><button type="button" class="btn btn-info mb-2">Payer et commander</button></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head>
+  <title>Microservice Orders</title>
+  <link th:rel = "stylesheet" th:href = "@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class = "container">
+  <h1>Microservice Orders eCommerce</h1>
+  <a th:href = "@{|/|}"><button type="button" class="btn btn-info mb-2">Retour à l'accueil</button></a>
+
+  <div class="row">
+    <div th:each = "commande : ${commandes}" class = "col-md-4 my-1">
+      <div data-th-if="${commande.getPaniers().size() != 0}">
+        <a th:href = "@{|/commande-detail/${commande.getId()}|}">
+          <p>Numéro de la commande : <p th:text = "${commande.getId()}"></p></p>
+          <p>Prix total : <p th:text = "${commande.getPrix()}"></p></p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

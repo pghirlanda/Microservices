@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head>
+        <title>Microservice Client</title>
+        <link th:rel = "stylesheet" th:href = "@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class = "container">
+        <h1>Microservice Client eCommerce</h1>
+
+        <div data-th-if="${listOrders.size()} > 1" class="right">
+                <a th:href = "@{|/list-orders|}"><button type="button" class="btn btn-info mb-2">Voir l'historique des commandes</button></a>
+        </div>
+
+        <div data-th-if="${panier.getProducts().size() != 0}">
+                <a th:href = "@{|/show-cart/${panier.getId()}|}"><button type="button" class="btn btn-info mb-2">Voir le panier</button></a>
+                <p>Nombre de produit dans votre panier : <p th:text="${panier.getProducts().size()}"></p></p>
+        </div>
+
+        <div class="row">
+                <div th:each = "product : ${products}" class = "col-md-4 my-1">
+                        <a th:href = "@{|/product-detail/${product.id}|}">
+                                <img th:src = "${product.illustration}" class = "card-img-top"/>
+                                <p th:text = "${product.name}"></p>
+                                <a th:href = "@{|/add-product/${product.id}|}"><button type="button" class="btn btn-info mb-2">Ajouter au panier</button></a>
+                        </a>
+                </div>
+        </div>
+</div>
+</body>
+</html>
